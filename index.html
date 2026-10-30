@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explorador de Publicaciones | JSONPlaceholder</title>
+    <link rel="stylesheet" href="STYLES/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Cabecera de la Aplicación -->
+    <header class="app-header">
+        <div class="header-container">
+            <h1>📖 Explorador de Publicaciones</h1>
+            <p>Consumiendo y enviando datos a JSONPlaceholder</p>
+            
+            <!-- Acciones de Cabecera (Buscador y Botón Nuevo Post) -->
+            <div class="header-actions">
+                <div class="search-box">
+                    <input 
+                        type="text" 
+                        id="search-input" 
+                        placeholder="Buscar publicaciones por título..." 
+                        autocomplete="off"
+                    >
+                </div>
+                <button id="open-modal-btn" class="btn-primary">➕ Nueva Publicación</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="app-main">
+        <div id="loading-spinner" class="spinner-container hidden">
+            <div class="spinner"></div>
+            <p>Cargando publicaciones...</p>
+        </div>
+
+        <div id="error-message" class="error-container hidden">
+            <p>⚠️ Ocurrió un error al cargar los datos. Por favor, intenta nuevamente.</p>
+        </div>
+
+        <section id="posts-container" class="posts-grid"></section>
+    </main>
+
+    <!-- Modal para Crear Nueva Publicación -->
+    <div id="post-modal" class="modal hidden">
+        <div class="modal-content">
+            <span id="close-modal-btn" class="close-btn">&times;</span>
+            <h2>Crear Nueva Publicación</h2>
+            <form id="new-post-form">
+                <div class="form-group">
+                    <label for="new-title">Título</label>
+                    <input type="text" id="new-title" required placeholder="Ej. Mi primer post con fetch...">
+                </div>
+                <div class="form-group">
+                    <label for="new-body">Contenido</label>
+                    <textarea id="new-body" rows="4" required placeholder="Escribe el contenido de tu publicación aquí..."></textarea>
+                </div>
+                <button type="submit" class="btn-primary full-width">Publicar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal con los datos del Usuario (se abre al pulsar una card) -->
+    <div id="user-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="user-modal-title">
+        <div class="modal-content user-modal-content">
+            <button id="close-user-modal-btn" class="close-btn" type="button" aria-label="Cerrar ventana">&times;</button>
+
+            <div class="user-header">
+                <div id="user-avatar" class="user-avatar" aria-hidden="true"></div>
+                <h2 id="user-modal-title">Información del Usuario</h2>
+            </div>
+
+            <dl class="user-details">
+                <div class="user-field">
+                    <dt>ID</dt>
+                    <dd id="user-id"></dd>
+                </div>
+                <div class="user-field">
+                    <dt>Nombre</dt>
+                    <dd id="user-name"></dd>
+                </div>
+                <div class="user-field">
+                    <dt>Username</dt>
+                    <dd id="user-username"></dd>
+                </div>
+                <div class="user-field">
+                    <dt>Email</dt>
+                    <dd><a id="user-email" href="#"></a></dd>
+                </div>
+                <div class="user-field">
+                    <dt>Teléfono</dt>
+                    <dd id="user-phone"></dd>
+                </div>
+                <div class="user-field">
+                    <dt>Sitio web</dt>
+                    <dd><a id="user-website" href="#" target="_blank" rel="noopener noreferrer"></a></dd>
+                </div>
+            </dl>
+        </div>
+    </div>
+
+    <footer class="app-footer">
+        <p>Desarrollado con HTML5, CSS3 y JavaScript DOM API.</p>
+    </footer>
+
+    <script src="SCRIPTS/app.js"></script>
+</body>
+</html>
